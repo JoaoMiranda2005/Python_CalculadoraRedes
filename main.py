@@ -12,7 +12,7 @@ def main():
             num_subredes = int(input("\nDigite o número de sub-redes desejadas: "))
             if num_subredes == 0:
                 endereco_ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast, ips_hosts = calcular_ip(classe_ip, num_hosts_fora_subredes)
-                print("================================================================")
+                print("================================================================\n")
                 print("\nEndereço IP gerado:", endereco_ip)
                 print("\nMáscara de Sub-rede gerada:", mascara)
                 print("\nPrimeiro IP útil:", primeiro_ip)
@@ -26,31 +26,54 @@ def main():
                 subrede_especifica = input("\nDeseja saber os detalhes de uma sub-rede específica? (S/N): ")
                 if subrede_especifica.upper() == 'S':
                     subrede_desejada = input("\nDigite o número da sub-rede desejada: ")
-                    endereco_ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast, ips_subredes, ips_hosts = calcular_ip_e_subredes(classe_ip, num_hosts_fora_subredes, num_subredes, subrede_desejada)
-                    print("\nDetalhes da Sub-rede", subrede_desejada)
-                    print("\nEndereço IP reservado:", ips_subredes[subrede_desejada])
-                    print("\nMáscara de Sub-rede gerada:", mascara)
-                    print("\nPrimeiro IP útil:", primeiro_ip)
-                    print("\nÚltimo IP útil:", ultimo_ip)
-                    print("\nEndereço de Broadcast:", endereco_broadcast)
-                    print("\nEndereços IP dos hosts fora das sub-redes:")
-                    for host, ip in ips_hosts.items():
-                        print(f"\nHost {host}: {ip}")
+                    resultado = calcular_ip_e_subredes(classe_ip, num_hosts_fora_subredes, num_subredes, subrede_desejada)
+                    if isinstance(resultado, tuple):
+                        endereco_ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast, ips_subredes, ips_hosts = resultado
+                        print("\nDetalhes da Sub-rede", subrede_desejada)
+                        print("\nEndereço IP reservado:", ips_subredes[subrede_desejada])
+                        print("\nMáscara de Sub-rede gerada:", mascara)
+                        print("\nPrimeiro IP útil:", primeiro_ip)
+                        print("\nÚltimo IP útil:", ultimo_ip)
+                        print("\nEndereço de Broadcast:", endereco_broadcast)
+                        print("\nEndereços IP dos hosts fora das sub-redes:")
+                        for host, ip in ips_hosts.items():
+                            print(f"\nHost {host}: {ip}")
+                    else:
+                        print(resultado)
                 else:
-                    endereco_ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast, ips_subredes, ips_hosts = calcular_ip_e_subredes(classe_ip, num_hosts_fora_subredes, num_subredes)
-                    print("================================================================")
-                    print("\nEndereço IP gerado:", endereco_ip)
-                    print("\nMáscara de Sub-rede gerada:", mascara)
-                    print("\nPrimeiro IP útil:", primeiro_ip)
-                    print("\nÚltimo IP útil:", ultimo_ip)
-                    print("\nEndereço de Broadcast:", endereco_broadcast)
-                    print("\nEndereços IP reservados para as sub-redes:")
-                    for subrede, ip in ips_subredes.items():
-                        print(f"\nSub-rede {subrede}: {ip}")
-                    print("\nEndereços IP dos hosts fora das sub-redes:")
-                    for host, ip in ips_hosts.items():
-                        print(f"\nHost {host}: {ip}")
-                    print("================================================================")
+                    resultado = calcular_ip_e_subredes(classe_ip, num_hosts_fora_subredes, num_subredes)
+                    if isinstance(resultado, tuple) and len(resultado) == 3:
+                        endereco_ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast, ips_subredes, ips_hosts = resultado
+                        print("================================================================")
+                        print("\nEndereço IP gerado:", endereco_ip)
+                        print("\nMáscara de Sub-rede gerada:", mascara)
+                        print("\nPrimeiro IP útil:", primeiro_ip)
+                        print("\nÚltimo IP útil:", ultimo_ip)
+                        print("\nEndereço de Broadcast:", endereco_broadcast)
+                        print("\nEndereços IP das sub-redes:")
+                        for subrede, ip in ips_subredes.items():
+                            print(f"\nSub-rede {subrede}: {ip}")
+                        print("\nEndereços IP dos hosts fora das sub-redes:")
+                        for host, ip in ips_hosts.items():
+                            print(f"\nHost {host}: {ip}")
+                        print("================================================================")
+                    else:
+                        endereco_ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast, ips_subredes, ips_hosts = calcular_ip_e_subredes(classe_ip, num_hosts_fora_subredes, num_subredes)
+                        print("================================================================")
+                        print("\nEndereço IP gerado:", endereco_ip)
+                        print("\nMáscara de Sub-rede gerada:", mascara)
+                        print("\nPrimeiro IP útil:", primeiro_ip)
+                        print("\nÚltimo IP útil:", ultimo_ip)
+                        print("\nEndereço de Broadcast:", endereco_broadcast)
+                        print("\nEndereços IP das sub-redes:")
+                        for subrede, ip in ips_subredes.items():
+                            print(f"\nSub-rede {subrede}: {ip}")
+                        print("\nEndereços IP dos hosts fora das sub-redes:")
+                        for host, ip in ips_hosts.items():
+                            print(f"\nHost {host}: {ip}")
+                        print("================================================================")
+
+
         elif opcao == '2':
             print("\nSalvando os detalhes da rede em um arquivo de texto...")
             salvar_detalhes_rede(endereco_ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast, ips_subredes, ips_hosts)
@@ -146,7 +169,7 @@ def calcular_ip_e_subredes(classe, num_hosts_fora_subredes, num_subredes, subred
         host_ip = f"{primeiro_octeto}.{random.randint(0, 255)}.{random.randint(0, 255)}.{i + 1}"
         ips_hosts[f"\nHost {i}"] = host_ip
     
-    return (ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast), ips_subredes, ips_hosts
+    return ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast, ips_subredes, ips_hosts
 
 def salvar_detalhes_rede(endereco_ip, mascara, primeiro_ip, ultimo_ip, endereco_broadcast, ips_subredes, ips_hosts):
     with open("detalhes_rede.txt", "w") as file:
