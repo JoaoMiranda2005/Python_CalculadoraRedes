@@ -1,35 +1,35 @@
-<h1>Programa de Criação de Redes</h1>
+<h1>Network Creation Program</h1>
 
-<h2>Descrição</h2>
-<p>O Programa de Criação de Redes é uma ferramenta em Python projetada para auxiliar na criação e gerenciamento de redes de computadores. Ele oferece uma variedade de funcionalidades para calcular endereços IP, sub-redes e gerar detalhes da rede. Além disso, permite aos usuários salvar os detalhes da rede em um arquivo de texto.</p>
+<h2>Description</h2>
+<p>The Network Creation Program is a Python tool designed to assist in the creation and management of computer networks. It offers a variety of functionalities to calculate IP addresses, subnets, and generate network details. Additionally, it allows users to save network details to a text file.</p>
 
-<h2>Funcionalidades</h2>
+<h2>Features</h2>
 <ul>
-  <li>Cálculo de endereços IP para diferentes classes (A, B ou C).</li>
-  <li>Geração de detalhes de sub-redes, incluindo endereço da sub-rede, endereço de broadcast e faixa de endereços IP utilizáveis.</li>
-  <li>Salvamento dos detalhes da rede em um arquivo de texto.</li>
-  <li>Interface de linha de comando simples para fácil interação.</li>
+  <li>Calculate IP addresses for different classes (A, B, or C).</li>
+  <li>Generate subnet details including subnet address, broadcast address, and range of usable IP addresses.</li>
+  <li>Save network details to a text file.</li>
+  <li>Simple command-line interface for easy interaction.</li>
 </ul>
 
-<h2>Como Utilizar</h2>
+<h2>How to Use</h2>
 <ol>
-  <li>Clone o repositório para sua máquina local.</li>
-  <li>Execute o arquivo <code>main.py</code>.</li>
-  <li>Siga as instruções na tela para realizar as ações desejadas, como calcular endereços IP ou salvar detalhes da rede.</li>
+  <li>Clone the repository to your local machine.</li>
+  <li>Run the <code>main.py</code> file.</li>
+  <li>Follow the on-screen instructions to perform desired actions such as calculating IP addresses or saving network details.</li>
 </ol>
 
-<h2>Requisitos</h2>
+<h2>Requirements</h2>
 <ul>
   <li>Python 3.x</li>
-  <li>Módulo Random</li>
-  <li>Módulo Math</li>
+  <li>Random module</li>
+  <li>Math module</li>
 </ul>
 
-<h2>Uso</h2>
+<h2>Usage</h2>
 <pre><code>python main.py</code></pre>
 
-<h2>Contribuição</h2>
-<p>Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests com melhorias, correções de bugs ou novas funcionalidades.</p>
+<h2>Contribution</h2>
+<p>Contributions are welcome! Feel free to submit pull requests with improvements, bug fixes, or new features.</p>
 
-<h2>Licença</h2>
-<p>Este projeto está licenciado sob a Licença MIT - veja o arquivo <a href="LICENSE">LICENSE</a> para mais detalhes.</p>
+<h2>License</h2>
+<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
